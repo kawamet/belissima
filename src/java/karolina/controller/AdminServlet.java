@@ -2,9 +2,7 @@ package karolina.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
@@ -18,6 +16,8 @@ public class AdminServlet extends HttpServlet {
     private static final String PASSWORD = "password";
     private static final String ADMIN_USER = "admin";
     private static final String ADMIN_PASSWORD = "admin";
+    public static final String PRIVILEGE = "privilege";
+    public static final String ADMIN_PRIVILEGE = "admin";
 
     //czy podal donre dane jesli tak to nadaje mu nowa sesje
     //jesli zle to ta sama strona + informacja ze jest niepoprawnie (include)
@@ -26,20 +26,32 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
+        response.setContentType("text/html");
         String user = request.getParameter(USER);
         String password = request.getParameter(PASSWORD);
 
-        if (user.equals(ADMIN_USER) && password.equals(ADMIN_PASSWORD)) {
+        if (ADMIN_USER.equals(user) && ADMIN_PASSWORD.equals(password)){
+            setAdminPrivilage(request);
             logger.info("Autorized for: " + user);
             writer.println("<h1>Successfully logged!</h1><br>");
-            request.getRequestDispatcher("/index.jsp").include(request,response);
+            request.getRequestDispatcher("/index.jsp").include(request, response);
 
-        }else {
+        } else {
             logger.warning("Wrong autorisation! Password: " + password + "user: " + user);
             writer.println("<h1>Wrong user or password</h1><br>");
-            request.getRequestDispatcher("/login.jsp").include(request,response);
+            request.getRequestDispatcher("/login.jsp").include(request, response);
         }
 
+    }
+
+    private void setAdminPrivilage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute(PRIVILEGE, ADMIN_PRIVILEGE);
 
     }
+
+/*    private void setAdminPrivilageCookie(HttpServletResponse response){
+        Cookie cookie = new Cookie(PRIVILEGE, ADMIN_PRIVILEGE);
+        response.addCookie(cookie);
+    }*/
 }
