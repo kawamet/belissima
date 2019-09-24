@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static karolina.controller.AdminServlet.ADMIN_PRIVILEGE;
-import static karolina.controller.AdminServlet.PRIVILEGE;
+import static karolina.controller.LoginServlet.ADMIN_PRIVILEGE;
+import static karolina.controller.LoginServlet.PRIVILEGE;
 
 //mozna dodac tylko produkty jesli jest sie zaogowanym
 

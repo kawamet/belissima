@@ -4,18 +4,35 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "item_name")
     private String itemName;
+    @Column(name = "category")
     private String category;
+    @Column(name = "item_amount")
     private int itemAmount;
+    @Column(name = "price")
     private int price;
 
-  /*  public void setId(String id) {
+    public Product(String itemName, String category, int itemAmount, int price) {
+        this.itemName = itemName;
+        this.category = category;
+        this.itemAmount = itemAmount;
+        this.price = price;
+    }
+
+    /*  public void setId(String id) {
         this.id = Long.parseLong(id);
     }
 

@@ -26,10 +26,10 @@ public class ProductServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         Optional<Long> id = getIdFromParamenetr(idParameter);
         if (idParameter ==null){
-            //wyswietl cala liste
+            // todo wyswietl cala liste
             writer.println("<h2>Tutaj wyswietl cala liste produktow</h2>");
         }else if (id.isPresent()){
-            //wyswietl konkretny produkt
+            //todo wyswietl konkretny produkt
             writer.println("<h2> tutaj wyswietle konkretny produkt" + idParameter + "</h2>");
         }else {
             writer.println("<h2>NIEPOPRAWNY ID!</h2>");
