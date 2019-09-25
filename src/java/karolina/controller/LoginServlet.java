@@ -43,8 +43,9 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/index.jsp").include(request, response);
 
             //todo chcek in database if user exists if not create new one
-        } else if(chcekUser(user, password)){
+        } else if (chcekUser(user, password)) {
             setUserPrivilege(request);
+
             writer.println("<h1>Successfully logged!</h1><br>");
             request.getRequestDispatcher("/shop.jsp").include(request, response);
         } else {
@@ -53,15 +54,16 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/login.jsp").include(request, response);
         }
 
+
     }
 
-    public boolean chcekUser(String user, String password){
+    public boolean chcekUser(String user, String password) {
         boolean exist = false;
         DaoUserImpl daoUser = new DaoUserImpl();
         List<User> all = daoUser.findAll();
         for (User user1 : all) {
-            if (user.equals(user1.getUser())){
-                if (password.equals(user1.getPassword())){
+            if (user.equals(user1.getUser())) {
+                if (password.equals(user1.getPassword())) {
                     exist = true;
                 }
             }
@@ -74,14 +76,17 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute(PRIVILEGE, ADMIN_PRIVILEGE);
 
     }
+
     private void setUserPrivilege(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute(PRIVILEGE, USER_PRIVILEGE);
 
     }
 
-/*    private void setAdminPrivilageCookie(HttpServletResponse response){
+  /* private void setAdminPrivilageCookie(HttpServletResponse response){
         Cookie cookie = new Cookie(PRIVILEGE, ADMIN_PRIVILEGE);
-        response.addCookie(cookie);
-    }*/
+        response.addCookie(cookie);*/
+
+
+
 }

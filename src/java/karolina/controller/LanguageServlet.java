@@ -4,6 +4,7 @@ import karolina.controller.LangProvider;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,10 +21,19 @@ public class LanguageServlet extends HttpServlet {
         String langParameter = request.getParameter(LANG);
         if (PL_LANG.equals(langParameter)) {
             LangProvider.INSTANCE.setLanguage(Locale.forLanguageTag(PL_LANG));
+            setCookie(response, langParameter);
         } else {
             LangProvider.INSTANCE.setLanguage(Locale.ENGLISH);
         }
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
+
+    private void setCookie(HttpServletResponse response, String langParameter) {
+        Cookie cookie = new Cookie("plCookie", langParameter);
+        cookie.setMaxAge(60*60*24*365);
+        response.addCookie(cookie);
+    }
+
+
 }

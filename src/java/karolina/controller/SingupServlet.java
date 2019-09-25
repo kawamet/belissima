@@ -24,7 +24,7 @@ public class SingupServlet extends HttpServlet {
         String password = request.getParameter("password");
 
 
-        logger.warning("DUPA User to " + user + "password to: " + password);
+        logger.warning("KAROLINA User to " + user + "password to: " + password);
         PrintWriter writer = response.getWriter();
         if (password == null || user == null) {
             writer.println("Required parameters are not filled");
