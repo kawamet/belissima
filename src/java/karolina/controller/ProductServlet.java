@@ -1,6 +1,7 @@
 package karolina.controller;
 
 import com.google.common.base.Throwables;
+import karolina.model.DAO.DaoProductImpl;
 import karolina.model.Product;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -22,12 +24,18 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idParameter = req.getParameter(ID);
 
+        DaoProductImpl daoProductr = new DaoProductImpl();
+
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
         Optional<Long> id = getIdFromParamenetr(idParameter);
+        List<Product> all = daoProductr.findAll();
         if (idParameter ==null){
             // todo wyswietl cala liste
             writer.println("<h2>Tutaj wyswietl cala liste produktow</h2>");
+            req.setAttribute("product_list", all);
+            req.getRequestDispatcher("/allproducts.jsp").forward(req,resp);
+
         }else if (id.isPresent()){
             //todo wyswietl konkretny produkt
             writer.println("<h2> tutaj wyswietle konkretny produkt" + idParameter + "</h2>");
