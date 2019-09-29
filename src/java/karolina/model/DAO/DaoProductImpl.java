@@ -19,7 +19,6 @@ public class DaoProductImpl implements DaoInferface<Product> {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
-        entityManager.flush();
         closeAll(entityManager,entityManagerFactory);
     }
 

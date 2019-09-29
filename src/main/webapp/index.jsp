@@ -9,7 +9,8 @@
 </h1>
 <a href="/belissima_war/product.jsp">Add product</a><br>
 <a href="/belissima_war/login.jsp">Login</a><br>
-<a href="/belissima_war/allproducts.jsp">See all products</a><br>
+<a href="/belissima_war/product">See all products</a><br>
+<a href="/belissima_war/productid.jsp">Find product</a><br>
 
 
 

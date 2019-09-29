@@ -12,8 +12,8 @@
 </head>
 <body>
 <form action="/belissima_war/product" method="post">
-    ID:
-    <input type="text" name="id"><br>
+    <%--ID:
+    <input type="text" name="id"><br>--%>
     Item Name
     <input type="text" name="itemName"><br>
     Category
