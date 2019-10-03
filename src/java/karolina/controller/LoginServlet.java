@@ -1,6 +1,8 @@
 package karolina.controller;
 
+import karolina.model.DAO.DaoProductImpl;
 import karolina.model.DAO.DaoUserImpl;
+import karolina.model.Product;
 import karolina.model.User;
 
 import javax.servlet.ServletException;
@@ -23,6 +25,7 @@ public class LoginServlet extends HttpServlet {
     public static final String PRIVILEGE = "privilege";
     public static final String ADMIN_PRIVILEGE = "admin";
     public static final String USER_PRIVILEGE = "user";
+    public static Long userId = null;
 
     //czy podal donre dane jesli tak to nadaje mu nowa sesje
     //jesli zle to ta sama strona + informacja ze jest niepoprawnie (include)
@@ -35,6 +38,8 @@ public class LoginServlet extends HttpServlet {
         String user = request.getParameter(USER);
         String password = request.getParameter(PASSWORD);
 
+        DaoProductImpl daoProduct= new DaoProductImpl();
+        List<Product> all = daoProduct.findAll();
 
         if (ADMIN_USER.equals(user) && ADMIN_PASSWORD.equals(password)) {
             setAdminPrivilage(request);
@@ -45,6 +50,9 @@ public class LoginServlet extends HttpServlet {
             //todo chcek in database if user exists if not create new one
         } else if (chcekUser(user, password)) {
             setUserPrivilege(request);
+
+            request.setAttribute("product_list", all);
+
 
             writer.println("<h1>Successfully logged!</h1><br>");
             request.getRequestDispatcher("/shop.jsp").include(request, response);
@@ -64,6 +72,7 @@ public class LoginServlet extends HttpServlet {
         for (User user1 : all) {
             if (user.equals(user1.getUser())) {
                 if (password.equals(user1.getPassword())) {
+                    userId = user1.getId();
                     exist = true;
                 }
             }

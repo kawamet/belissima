@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,11 +27,26 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_product",
+            joinColumns = @JoinColumn(name = "procuct_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> users;
+
     public Product(String itemName, String category, int itemAmount, int price) {
         this.itemName = itemName;
         this.category = category;
         this.itemAmount = itemAmount;
         this.price = price;
+    }
+
+    public void addUser(User user) {
+        if (user == null) {
+            users = new ArrayList<>();
+        }
+        users.add(user);
+
     }
 
     /*  public void setId(String id) {
@@ -51,21 +68,23 @@ public class Product {
         private int itemAmount;
         private int price;
 
-        public Builder id(String id){
-            this.id= Long.parseLong(id);
-            return this;
-        }
-        public Builder itemAmount(String itemAmount){
-            this.itemAmount= Integer.parseInt(itemAmount);
-            return this;
-        }
-        public Builder price(String price){
-            this.price= Integer.parseInt(price);
+        public Builder id(String id) {
+            this.id = Long.parseLong(id);
             return this;
         }
 
-        public Product build(){
-            return new Product(id, itemName, category, itemAmount, price);
+        public Builder itemAmount(String itemAmount) {
+            this.itemAmount = Integer.parseInt(itemAmount);
+            return this;
+        }
+
+        public Builder price(String price) {
+            this.price = Integer.parseInt(price);
+            return this;
+        }
+
+        public Product build() {
+            return new Product(itemName, category, itemAmount, price);
         }
     }
 

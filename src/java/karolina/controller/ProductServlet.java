@@ -47,7 +47,7 @@ public class ProductServlet extends HttpServlet {
 
 
         } else {
-            writer.println("<h2>NIEPOPRAWNY ID!</h2>");
+            writer.println("<h2>Incorrect ID!</h2>");
         }
     }
 
@@ -60,22 +60,21 @@ public class ProductServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
 
 
-        if ( itemName == null || category == null || itemAmount == null || price == null) {
+        if (itemName == null || category == null || itemAmount == null || price == null) {
             writer.println("Required parameters are not filled");
         } else if (validateIntegarValues(price, itemAmount)) {
             //todo tutaj mozna to zrobic ladniej patrz builder DONE
             daoProductr = new DaoProductImpl();
             daoProductr.persist(new Product(itemName, category, Integer.parseInt(itemAmount), Integer.parseInt(price)));
-            writer.println("Product id created");
+            writer.println("Product is created");
         } else {
-            writer.println("integar values are ok");
+            writer.println("Integar values are ok");
         }
 
     }
 
     private boolean validateIntegarValues(String price, String amount) {
         try {
-            //Integer idInteger = Integer.valueOf(id);
             Integer priceInteger = Integer.valueOf(price);
             Integer amountInteger = Integer.valueOf(amount);
 
