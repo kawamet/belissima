@@ -20,7 +20,7 @@ public class BuyServlet extends HttpServlet {
     private static final Long USER_ID = LoginServlet.userId;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String productId = req.getParameter(PRODUCT_ID);
 
         DaoUserImpl daoUser = new DaoUserImpl();
