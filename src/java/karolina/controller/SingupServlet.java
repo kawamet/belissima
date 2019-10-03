@@ -17,22 +17,25 @@ import java.io.PrintWriter;
 public class SingupServlet extends HttpServlet {
 
     private static final Logger logger = Logger.getLogger(SingupServlet.class.getSimpleName());
+    private static final String USER = "user";
+    public static final String PASSWORD = "password";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user = request.getParameter("user");
-        String password = request.getParameter("password");
+        String user = request.getParameter(USER);
+        String password = request.getParameter(PASSWORD);
 
 
         logger.warning("KAROLINA User to " + user + "password to: " + password);
         PrintWriter writer = response.getWriter();
+        response.setContentType("text/html");
         if (password == null || user == null) {
             writer.println("Required parameters are not filled");
             request.getRequestDispatcher("/login.jsp").include(request, response);
         }else {
             DaoUserImpl daoUser = new DaoUserImpl();
             daoUser.persist(new User(user, password));
-            writer.println("User created!");
+            writer.println("<h3>User created! Please log in</h3><br>");
             request.getRequestDispatcher("/login.jsp").include(request, response);
         }
 

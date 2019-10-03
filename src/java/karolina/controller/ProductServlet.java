@@ -32,13 +32,11 @@ public class ProductServlet extends HttpServlet {
         Product productId;
         List<Product> all = daoProductr.findAll();
         if (idParameter == null) {
-            // todo wyswietl cala liste DONE
             writer.println("<h2>Tutaj wyswietl cala liste produktow</h2>");
             req.setAttribute("product_list", all);
             req.getRequestDispatcher("/allproducts.jsp").forward(req, resp);
 
         } else if (id.isPresent()) {
-            //todo wyswietl konkretny produkt, musze dokonczyc tutaj DZIALA
             productId = daoProductr.findById(Long.valueOf(idParameter));
             writer.println("ID:" + productId.getId());
             writer.println("Item name: " + productId.getItemName());

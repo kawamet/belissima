@@ -16,14 +16,15 @@ import java.io.PrintWriter;
 
 @WebServlet("/buy")
 public class BuyServlet extends HttpServlet {
-
+    private static final String PRODUCT_ID = "productId";
+    private static final Long USER_ID = LoginServlet.userId;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String productId = req.getParameter("productId");
+        String productId = req.getParameter(PRODUCT_ID);
 
         DaoUserImpl daoUser = new DaoUserImpl();
-        User user = daoUser.findById(LoginServlet.userId);
+        User user = daoUser.findById(USER_ID);
 
         DaoProductImpl daoProduct = new DaoProductImpl();
         Product product = daoProduct.findById(Long.parseLong(productId));

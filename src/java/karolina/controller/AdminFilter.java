@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import static karolina.controller.LoginServlet.ADMIN_PRIVILEGE;
 import static karolina.controller.LoginServlet.PRIVILEGE;
 
-//mozna dodac tylko produkty jesli jest sie zaogowanym
 
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/product", "/product.jsp"})
 public class AdminFilter implements Filter {
@@ -30,7 +29,6 @@ public class AdminFilter implements Filter {
             servletRequest.getRequestDispatcher("/index.jsp").include(servletRequest, servletResponse);
         }
         //after
-        //tutaj nie jest potrzebe
 
     }
 }
