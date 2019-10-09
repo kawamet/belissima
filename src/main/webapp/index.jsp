@@ -1,16 +1,20 @@
 <%@ page import="karolina.controller.LangProvider" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
 <body>
-<h2>To jest strona glowna!</h2>
-<h1><%= LangProvider.INSTANCE.getMessage("greetng")%>
+<%--<h1><%= LangProvider.INSTANCE.getMessage("greetng")%>--%>
 </h1>
-<a href="/belissima_war/product.jsp">Add product</a><br>
-<a href="/belissima_war/login.jsp">Login</a><br>
-<a href="/belissima_war/product">See all products</a><br>
-<a href="/belissima_war/productid.jsp">Find product</a><br>
+<a href="/belissima_war/product.jsp"><%= LangProvider.INSTANCE.getMessage("addproduct")%></a><br>
+<a href="/belissima_war/login.jsp"><%= LangProvider.INSTANCE.getMessage("login")%></a><br>
+<a href="/belissima_war/product"><%= LangProvider.INSTANCE.getMessage("allproducts")%></a><br>
+<a href="/belissima_war/productid.jsp"><%= LangProvider.INSTANCE.getMessage("findproduct")%></a><br>
 
 
 

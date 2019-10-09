@@ -1,4 +1,4 @@
-<%--
+<%@ page import="karolina.controller.LangProvider" %><%--
   Created by IntelliJ IDEA.
   User: Karolina
   Date: 24/09/2019
@@ -9,14 +9,15 @@
 <html>
 <head>
     <title>Sing Up!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 <form action="/belissima_war/singupServlet" method="post">
-    Email:
+    <%= LangProvider.INSTANCE.getMessage("useremail")%>
     <input type="text" name="user"><br>
-    Password:
+    <%= LangProvider.INSTANCE.getMessage("password")%>
     <input type="password" name="password"><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="<%= LangProvider.INSTANCE.getMessage("submit")%>">
 </form>
 
 </body>

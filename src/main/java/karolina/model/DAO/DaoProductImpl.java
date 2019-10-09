@@ -41,6 +41,6 @@ public class DaoProductImpl implements DaoInferface<Product> {
 
     public void closeAll(EntityManager entityManager, EntityManagerFactory entityManagerFactory){
         entityManager.close();
-        entityManager.close();
+        entityManagerFactory.close();
     }
 }

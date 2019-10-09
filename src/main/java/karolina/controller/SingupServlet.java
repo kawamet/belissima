@@ -26,7 +26,7 @@ public class SingupServlet extends HttpServlet {
         String password = request.getParameter(PASSWORD);
 
 
-        logger.warning("KAROLINA User to " + user + "password to: " + password);
+        //logger.warning("User:  " + user + "password: " + password);
         PrintWriter writer = response.getWriter();
         response.setContentType("text/html");
         if (password == null || user == null) {
@@ -41,9 +41,4 @@ public class SingupServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        PrintWriter writer = resp.getWriter();
-    }
 }

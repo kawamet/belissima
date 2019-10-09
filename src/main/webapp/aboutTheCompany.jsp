@@ -16,6 +16,5 @@
     company started as a family-run jewellery shop in Copenhagen. Apart is known for its customizable charm bracelets,
     designer rings, necklaces and watches</p>
 
-
 </body>
 </html>

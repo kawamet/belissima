@@ -1,4 +1,4 @@
-
+<%@ page import="karolina.controller.LangProvider" %>
 <%--musze wydrukowac tablice ze wszystkimi produktami + opcja kup dla uzytkownika ktory jest zalogowany
 to co kupuje trafia to tabeli id produkt + id uzytkowniak--%>
 
@@ -18,17 +18,20 @@ to co kupuje trafia to tabeli id produkt + id uzytkowniak--%>
 <html>
 <head>
     <title>Title</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 </head>
 <body>
 
 <table border="1">
     <tr>
         <th>id</th>
-        <th>Item Name</th>
-        <th>Category</th>
-        <th>Item amount</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th><%= LangProvider.INSTANCE.getMessage("itemname")%></th>
+        <th><%= LangProvider.INSTANCE.getMessage("category")%></th>
+        <th><%= LangProvider.INSTANCE.getMessage("itemamount")%></th>
+        <th><%= LangProvider.INSTANCE.getMessage("itemprice")%></th>
+        <th><%= LangProvider.INSTANCE.getMessage("action")%></th>
 
 
     </tr>

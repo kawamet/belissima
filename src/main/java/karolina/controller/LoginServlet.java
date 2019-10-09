@@ -27,9 +27,7 @@ public class LoginServlet extends HttpServlet {
     public static final String USER_PRIVILEGE = "user";
     public static Long userId = null;
 
-    //czy podal donre dane jesli tak to nadaje mu nowa sesje
-    //jesli zle to ta sama strona + informacja ze jest niepoprawnie (include)
-    //jesli dobre to przekazanie do indeksu forward
+
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,13 +45,9 @@ public class LoginServlet extends HttpServlet {
             writer.println("<h1>Successfully logged!</h1><br>");
             request.getRequestDispatcher("/index.jsp").include(request, response);
 
-            //todo chcek in database if user exists if not create new one
         } else if (chcekUser(user, password)) {
             setUserPrivilege(request);
-
             request.setAttribute("product_list", all);
-
-
             writer.println("<h1>Successfully logged!</h1><br>");
             request.getRequestDispatcher("/shop.jsp").include(request, response);
         } else {

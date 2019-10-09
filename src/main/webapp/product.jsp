@@ -1,4 +1,4 @@
-<%--
+<%@ page import="karolina.controller.LangProvider" %><%--
   Created by IntelliJ IDEA.
   User: Karolina
   Date: 22/09/2019
@@ -9,21 +9,21 @@
 <html>
 <head>
     <title>Get product</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 <form action="/belissima_war/product" method="post">
     <%--ID:
     <input type="text" name="id"><br>--%>
-    Item Name
+    <%= LangProvider.INSTANCE.getMessage("itemname")%>
     <input type="text" name="itemName"><br>
-    Category
-    <%--tutaj mozna by wrzucic combobox--%>
+    <%= LangProvider.INSTANCE.getMessage("category")%>
     <input type="text" name="category"><br>
-    Item Amount
+    <%= LangProvider.INSTANCE.getMessage("itemamount")%>
     <input type="text" name="itemAmount"><br>
-    Item price
+    <%= LangProvider.INSTANCE.getMessage("itemprice")%>
     <input type="text" name="price"><br>
-    <input type="submit" value="Submit"><br>
+    <input type="submit" value="<%= LangProvider.INSTANCE.getMessage("submit")%>"><br>
 
 </form>
 

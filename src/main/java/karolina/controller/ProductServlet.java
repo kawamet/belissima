@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class ProductServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ProductServlet.class.getSimpleName());
     public static final String ID = "id";
+    public static final String PRODUCT_LIST = "product_list";
     private DaoProductImpl daoProductr;
 
     @Override
@@ -32,8 +33,7 @@ public class ProductServlet extends HttpServlet {
         Product productId;
         List<Product> all = daoProductr.findAll();
         if (idParameter == null) {
-            writer.println("<h2>Tutaj wyswietl cala liste produktow</h2>");
-            req.setAttribute("product_list", all);
+            req.setAttribute(PRODUCT_LIST, all);
             req.getRequestDispatcher("/allproducts.jsp").forward(req, resp);
 
         } else if (id.isPresent()) {
