@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public enum LangProvider {
-    //tuaj jest zaimplementowany singleton
     INSTANCE;
     private ResourceBundle bundle = ResourceBundle.getBundle("lang", Locale.getDefault());
 

@@ -61,7 +61,6 @@ public class ProductServlet extends HttpServlet {
         if (itemName == null || category == null || itemAmount == null || price == null) {
             writer.println("Required parameters are not filled");
         } else if (validateIntegarValues(price, itemAmount)) {
-            //todo tutaj mozna to zrobic ladniej patrz builder DONE
             daoProductr = new DaoProductImpl();
             daoProductr.persist(new Product(itemName, category, Integer.parseInt(itemAmount), Integer.parseInt(price)));
             writer.println("Product is created");
